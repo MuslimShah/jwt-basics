@@ -15,13 +15,10 @@ const login = async(req, res, next) => {
 }
 
 const dashboard = async(req, res, next) => {
-    console.log(req.headers);
-    const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith('Bearer')) {
-        throw new CustomApiError('no token provided', 400);
-    }
+
     let luckynumber = (Math.random() * 100);
-    res.status(200).json({ msg: `hello syed`, secret: `here is your secret key ${luckynumber}` })
+    res.status(200).json({ msg: `hello ~${req.user.username}`, secret: `here is your secret key ${luckynumber}` })
+
 }
 
 module.exports = {
